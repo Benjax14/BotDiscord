@@ -5,7 +5,19 @@ const client = new Client({ intents: 3276799 });
 
 client.on(Events.ClientReady, async () => {
   console.log(`Logged in as ${client.user.tag}!`)
-})
+});
+
+function requirehandlers(){
+    ["distube"].forEach(handler =>{
+        try {
+            require(`./handlers/${handler}`)(client)
+        } catch(e){
+            console.warn(e);
+        }
+    })
+}
+
+requirehandlers();
 
 client.on(Events.MessageCreate, async (message) => {
     
@@ -17,11 +29,11 @@ client.on(Events.MessageCreate, async (message) => {
     try {
 
         const command = require(`./commands/${args}`);
-        command.run(message);
+        command.run(message, client);
 
     } catch (error) {
         console.log(`Un error en la consulta -${args}`, error.message);
     }
-})
+});
 
 client.login(process.env.TOKEN);
