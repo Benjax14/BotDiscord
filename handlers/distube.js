@@ -1,6 +1,7 @@
 const DisTube = require('distube');
 const {SpotifyPlugin} = require('@distube/spotify')
 const {SoundCloudPlugin} = require('@distube/soundcloud')
+const fs = require("fs");
 
 module.exports = (client) => {
 
@@ -23,11 +24,11 @@ module.exports = (client) => {
             liveBuffer: 60000,
             dlChunkSize: 1024 * 1024 * 24,
         },
+        youtubeCookie: JSON.parse(fs.readFileSync("./cookies.json")),
         plugins: [
             new SpotifyPlugin({
                 parallel: true,
                 emitEventsAfterFetching: true,
-
             }),
             new SoundCloudPlugin()
         ],

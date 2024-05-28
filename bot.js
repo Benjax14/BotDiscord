@@ -1,4 +1,4 @@
-const { Client, Events } = require('discord.js');
+const { Client, Events, EmbedBuilder} = require('discord.js');
 require('dotenv').config();
 
 const client = new Client({ intents: 3276799 });
@@ -18,6 +18,19 @@ function requirehandlers(){
 }
 
 requirehandlers();
+
+client.distube.on('playSong', (queue, song) => {
+    const embed = new EmbedBuilder()
+      .setTitle("Reproduciendo ahora")
+      .setDescription(`[${song.name}](${song.url})`)
+      .setThumbnail(song.thumbnail)
+      .addFields(
+        { name: 'Duración', value: song.formattedDuration, inline: true },
+        { name: 'Solicitado por', value: song.user.tag, inline: true }
+      )
+    
+    queue.textChannel.send({ embeds: [embed] });
+});
 
 client.on(Events.MessageCreate, async (message) => {
     
