@@ -7,14 +7,14 @@ module.exports = (client) => {
 
     client.distube = new DisTube.DisTube(client,{
         emitNewSongOnly: false,
-        leaveOnEmpty: true,
-        leaveOnFinish: true,
+        leaveOnEmpty: false,
+        leaveOnFinish: false,
         leaveOnStop: true,
         savePreviousSongs: true,
         emitAddSongWhenCreatingQueue: false,
         searchSongs: 0,
         nsfw: false,
-        emptyCooldown: 25,
+        emptyCooldown: 60,
         directLink: true,
         streamType: 0,
         ytdlOptions:{
