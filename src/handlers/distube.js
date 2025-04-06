@@ -24,7 +24,7 @@ module.exports = (client) => {
             liveBuffer: 60000,
             dlChunkSize: 1024 * 1024 * 24,
         },
-        youtubeCookie: JSON.parse(fs.readFileSync("./cookies.json")),
+        youtubeCookie: JSON.parse(fs.readFileSync('./config/cookies.json')),
         plugins: [
             new SpotifyPlugin({
                 parallel: true,

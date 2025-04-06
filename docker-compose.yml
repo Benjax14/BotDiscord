@@ -1,0 +1,11 @@
+version: '3'
+services:
+  discord-bot:
+    build: .
+    volumes:
+      - './config:/app/config:rw'
+    env_file:
+      - .env
+    environment:
+      - TOKEN=${TOKEN}
+    restart: unless-stopped
